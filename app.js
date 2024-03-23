@@ -44,7 +44,13 @@ const auth = new google.auth.GoogleAuth({
 });
 
 // ID da pasta no Google Drive
-const folderId = '1K4J5ErgUVtepbBpvnLVZrNcOzvUZmtWK'; // ID da pasta fornecida
+const folderIds = {
+  teste: "1K4J5ErgUVtepbBpvnLVZrNcOzvUZmtWK",
+  pasta2: '1WZ52aXanhCdjoymi8AWuQPApsPZOYOJ8',
+  pasta3: '1WZmMrGVvvR4EYQuCI7v3JsOKmu8sfVDJ',
+  pasta4: '1W_IOIWlldNPc3trZVwxZHS7BlNVAVi0R'
+};
+
 
 // Rota para página inicial
 app.get('/', (req, res) => {
