@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     event.preventDefault();
 
     const files = document.querySelector('input[type="file"]').files;
+    const folder = document.querySelector('select[name="folder"]').value;
     const formData = new FormData();
 
     for (let i = 0; i < files.length; i++) {
@@ -12,18 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const xhr = new XMLHttpRequest();
+    const url = '/upload/' + folder;
 
-    xhr.open('POST', '/upload');
+    xhr.open('POST', url);
 
     xhr.onload = function() {
       if (xhr.status === 200) {
-        const response = JSON.parse(xhr.responseText);
-        if (response.success) {
-          // Redirecionar para a página 'sucesso.html' após o envio bem-sucedido
-          window.location.href = 'sucesso.html';
-        } else {
-          console.error('Erro ao enviar arquivo(s):', xhr.responseText);
-        }
+        // Redirecionar para a página 'su.html' após o envio bem-sucedido
+        window.location.href = 'su.html';
       } else {
         console.error('Erro ao enviar arquivo(s):', xhr.responseText);
       }
