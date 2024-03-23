@@ -43,14 +43,13 @@ const auth = new google.auth.GoogleAuth({
   scopes: 'https://www.googleapis.com/auth/drive',
 });
 
-// ID da pasta no Google Drive
+// ID das pastas no Google Drive
 const folderIds = {
   teste: "1K4J5ErgUVtepbBpvnLVZrNcOzvUZmtWK",
   pasta2: '1WZ52aXanhCdjoymi8AWuQPApsPZOYOJ8',
   pasta3: '1WZmMrGVvvR4EYQuCI7v3JsOKmu8sfVDJ',
   pasta4: '1W_IOIWlldNPc3trZVwxZHS7BlNVAVi0R'
 };
-
 
 // Rota para página inicial
 app.get('/', (req, res) => {
@@ -62,15 +61,16 @@ app.get('/su.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'su.html'));
 });
 
-// Rota para página su.html
-app.get('/index.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-
-
 // Rota para upload de arquivo(s)
-app.post('/upload', async (req, res) => {
+app.post('/upload/:folderName', async (req, res) => {
+  const folderName = req.params.folderName;
+  const folderId = folderIds[folderName];
+
+  if (!folderId) {
+    return res.status(400).send('Nome de pasta inválido.');
+  }
+
+  // Restante do código de upload permanece o mesmo
   // Atrasa o início do upload por 2 segundos para permitir que a barra de progresso seja exibida
   await new Promise(resolve => setTimeout(resolve, 2000));
 
