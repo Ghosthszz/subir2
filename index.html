@@ -83,9 +83,14 @@ button:hover {
   <h1>Upload de Arquivos</h1>
   <div class="container">
     <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="files" multiple>
-        <button type="submit">Enviar</button>
-    </form>
+  <select name="folder">
+    <option value="pasta2">Pasta 2</option>
+    <option value="pasta3">Pasta 3</option>
+    <option value="pasta4">Pasta 4</option>
+  </select>
+  <input type="file" name="files" multiple>
+  <button type="submit">Enviar</button>
+</form>
   
     <div class="progress-container">
       <div class="progress-bar"></div>
